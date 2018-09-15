@@ -11,25 +11,34 @@ class PhotoGallery extends Component {
     super();
 
     this.numPhotos = props.photoData.length;
+
     this.state = {
-      currentPhoto: 0
+      currentPhoto: 0,
     };
   }
 
-  onPrevClicked() {
-    const toShow = this.state.currentPhoto === 0
-      ? this.numPhotos - 1
-      : this.state.currentPhoto - 1;
-    
-    this.setState({currentPhoto: toShow});
+  onPrevClicked = e => {
+    // Having issues where this function is called twice! Hopefully this can help.
+    e.stopPropagation();
+    e.preventDefault();
+
+    if (this.state.currentPhoto > 0) {
+      this.setState(prevState => {
+        return {currentPhoto: prevState.currentPhoto - 1};
+      });
+    }
   }
 
-  onNextClicked() {
-    const toShow = this.state.currentPhoto === this.numPhotos - 1
-      ? 0
-      : this.state.currentPhoto + 1;
-    
-    this.setState({currentPhoto: toShow});
+  onNextClicked = e => {
+    // Having issues where this function is called twice! Hopefully this can help.
+    e.stopPropagation();
+    e.preventDefault();
+
+    if (this.state.currentPhoto < this.numPhotos - 1) {
+      this.setState(prevState => {
+        return {currentPhoto: prevState.currentPhoto + 1};
+      });
+    }
   }
 
   render() {
@@ -38,10 +47,10 @@ class PhotoGallery extends Component {
     return (
       <div className="photo-gallery">
         <PhotoItem photo={photoData[this.state.currentPhoto]} />
-        <button onClick={() => this.onPrevClicked()}>
+        <button onClick={this.onPrevClicked} disabled={this.state.currentPhoto === 0}>
           Prev
         </button>
-        <button onClick={() => this.onNextClicked()}>
+        <button onClick={this.onNextClicked} disabled={this.state.currentPhoto === this.numPhotos - 1}>
           Next
         </button>
       </div>

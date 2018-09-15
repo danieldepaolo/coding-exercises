@@ -10,7 +10,7 @@ const PhotoItem = props => {
   return (
     <div className="photo-item">
       <h1>{photo.caption}</h1>
-      <img src={photo.url} alt={photo.caption} />
+      <img className="image" src={photo.url} alt={photo.caption} />
     </div>
   );
 };
