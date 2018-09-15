@@ -5,8 +5,13 @@ import React from 'react';
 */
 
 const PhotoItem = props => {
+  const { photo } = props;
+
   return (
-    <h1>Photo</h1>
+    <div className="photo-item">
+      <h1>{photo.caption}</h1>
+      <img src={photo.url} alt={photo.caption} />
+    </div>
   );
 };
 

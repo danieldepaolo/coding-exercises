@@ -10,13 +10,42 @@ class PhotoGallery extends Component {
   constructor(props) {
     super();
 
+    this.numPhotos = props.photoData.length;
     this.state = {
-      photos: []
+      currentPhoto: 0
     };
   }
 
+  onPrevClicked() {
+    const toShow = this.state.currentPhoto === 0
+      ? this.numPhotos - 1
+      : this.state.currentPhoto - 1;
+    
+    this.setState({currentPhoto: toShow});
+  }
+
+  onNextClicked() {
+    const toShow = this.state.currentPhoto === this.numPhotos - 1
+      ? 0
+      : this.state.currentPhoto + 1;
+    
+    this.setState({currentPhoto: toShow});
+  }
+
   render() {
-    return <PhotoItem />;
+    const { photoData } = this.props;
+
+    return (
+      <div className="photo-gallery">
+        <PhotoItem photo={photoData[this.state.currentPhoto]} />
+        <button onClick={() => this.onPrevClicked()}>
+          Prev
+        </button>
+        <button onClick={() => this.onNextClicked()}>
+          Next
+        </button>
+      </div>
+    );
   }
 };
 
