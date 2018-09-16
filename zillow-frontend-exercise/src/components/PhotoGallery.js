@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PhotoItem from './PhotoItem';
+import SwitchButton from './SwitchButton';
 
 /*
   state: list of photo data
@@ -46,13 +47,21 @@ class PhotoGallery extends Component {
 
     return (
       <div className="photo-gallery">
+        <div className="btnColumn">
+          <SwitchButton
+            direction="prev"
+            clicked={e => this.onPrevClicked(e)}
+            disabled={this.state.currentPhoto === 0}
+          />
+        </div>
         <PhotoItem photo={photoData[this.state.currentPhoto]} />
-        <button onClick={this.onPrevClicked} disabled={this.state.currentPhoto === 0}>
-          Prev
-        </button>
-        <button onClick={this.onNextClicked} disabled={this.state.currentPhoto === this.numPhotos - 1}>
-          Next
-        </button>
+        <div className="btnColumn">
+          <SwitchButton
+            direction="next"
+            clicked={e => this.onNextClicked(e)}
+            disabled={this.state.currentPhoto === this.numPhotos - 1}
+          />
+        </div>
       </div>
     );
   }

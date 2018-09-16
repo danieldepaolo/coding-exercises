@@ -1,4 +1,26 @@
 .image {
-  width: 400px;
-  height: 260px;
+  width: 480px;
+  height: 320px;
+}
+
+.caption {
+  text-align: center;
+}
+
+.photo-gallery {
+  width: 45em;
+  margin: 2em auto;
+  display: flex;
+  justify-content: center;
+}
+
+.switch {
+  height: 80px;
+}
+
+.btnColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 3em 1em 0 1em;
 }

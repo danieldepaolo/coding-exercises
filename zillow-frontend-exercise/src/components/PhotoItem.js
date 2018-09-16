@@ -4,12 +4,10 @@ import React from 'react';
   Renders an image from a URL and a caption
 */
 
-const PhotoItem = props => {
-  const { photo } = props;
-
+const PhotoItem = ({photo}) => {
   return (
     <div className="photo-item">
-      <h1>{photo.caption}</h1>
+      <h4 className="caption">{photo.caption}</h4>
       <img className="image" src={photo.url} alt={photo.caption} />
     </div>
   );
