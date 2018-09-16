@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import PhotoItem from './PhotoItem';
 import SwitchButton from './SwitchButton';
 
@@ -19,10 +20,6 @@ class PhotoGallery extends Component {
   }
 
   onPrevClicked = e => {
-    // Having issues where this function is called twice! Hopefully this can help.
-    e.stopPropagation();
-    e.preventDefault();
-
     if (this.state.currentPhoto > 0) {
       this.setState(prevState => {
         return {currentPhoto: prevState.currentPhoto - 1};
@@ -31,10 +28,6 @@ class PhotoGallery extends Component {
   }
 
   onNextClicked = e => {
-    // Having issues where this function is called twice! Hopefully this can help.
-    e.stopPropagation();
-    e.preventDefault();
-
     if (this.state.currentPhoto < this.numPhotos - 1) {
       this.setState(prevState => {
         return {currentPhoto: prevState.currentPhoto + 1};
